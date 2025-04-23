@@ -197,6 +197,8 @@
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
+\newtheorem{refremark}{Remark}[section]
+\newtheorem{refsolution}{Solution}[section]
 \makeatother
 \makeatletter
 \makeatother
@@ -268,7 +270,7 @@ Loire, Bourges, 18800 France%
 \thanks{John Doe is with Anonymous University%
 }
 %by-author.affiliations
-\thanks{Template created June 23, 2023; revised December 20, 2023.}
+\thanks{Template created June 23, 2023; revised 23 Apr 2025}
 }
 \begin{document}
 
@@ -568,7 +570,7 @@ use div block with \texttt{\#fig-} label to embed your Figures.
 
 \begin{figure}
 
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}{0.50\linewidth}
 
 \centering{
 
@@ -580,7 +582,7 @@ use div block with \texttt{\#fig-} label to embed your Figures.
 
 \end{minipage}%
 %
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}{0.50\linewidth}
 
 \centering{
 
@@ -611,27 +613,25 @@ the {\LaTeX} \texttt{longtable} package, which does not support the
 two-column mode, which is required for most \texttt{IEEEtran} journals.
 \texttt{quarto-ieee} uses a hack to temporarily switch to one-column
 mode. However, this hack may break the page layout. To overcome this
-issue, a basic way is to use code cells (as for Table~\ref{tbl-other}).
-Quarto is a multi-language and it uses \texttt{Knitr} to execute
-\texttt{R} code and can execute Python code blocks within Markdown.
+issue, a basic way is to use code cells (as for \textbf{?@tbl-other}).
 
 \begin{table}
 
 \caption{\label{tbl-panel}Main Caption}
 
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}{0.50\linewidth}
 
-\subcaption{\label{tbl-first}First Table}
+\subcaption{\label{tbl-panel-1}First Table}
 
 \centering{
 
-\begin{tabular}[t]{lll}
+\begin{tabular}{llll}
 \toprule
-Col1 & Col2 & Col3\\
+ & Col1 & Col2 & Col3\\
 \midrule
-A & B & C\\
-E & F & G\\
-A & G & G\\
+0 & A & B & C\\
+1 & E & F & G\\
+2 & A & G & G\\
 \bottomrule
 \end{tabular}
 
@@ -639,19 +639,19 @@ A & G & G\\
 
 \end{minipage}%
 %
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}{0.50\linewidth}
 
-\subcaption{\label{tbl-second}Second Table}
+\subcaption{\label{tbl-panel-2}Second Table}
 
 \centering{
 
-\begin{tabular}[t]{lll}
+\begin{tabular}{llll}
 \toprule
-Col1 & Col2 & Col3\\
+ & Col1 & Col2 & Col3\\
 \midrule
-A & B & C\\
-E & F & G\\
-A & G & G\\
+0 & A & B & C\\
+1 & E & F & G\\
+2 & A & G & G\\
 \bottomrule
 \end{tabular}
 
@@ -662,27 +662,7 @@ A & G & G\\
 \end{table}%
 
 The Tables are cross-referenced as Table~\ref{tbl-panel} for details,
-especially Table~\ref{tbl-second}. There is also Table~\ref{tbl-other}.
-
-\begin{table}
-
-\caption{\label{tbl-other}A table}
-
-\centering{
-
-\begin{tabular}{lll}
-\toprule
-Col1 & Col2 & Col3\\
-\midrule
-A & D & G\\
-B & E & H\\
-C & F & I\\
-\bottomrule
-\end{tabular}
-
-}
-
-\end{table}%
+especially \textbf{?@tbl-second}. There is also \textbf{?@tbl-other}.
 
 \subsection{Bibliography}\label{bibliography}
 

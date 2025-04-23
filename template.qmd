@@ -30,7 +30,7 @@ author:
     bio: |
       Use `IEEEbiographynophoto` and the author name
       as the argument followed by the biography text.
-    note: "Template created June 23, 2023; revised `r format(Sys.Date(),format='%B %d, %Y')`."
+    note: "Template created June 23, 2023; revised 23 Apr 2025"
 abstract: |
   This document describes the most common article elements and how to use the 
   `quarto-ieee` class with Pandoc/Quarto-Markdown to produce files that are
@@ -245,44 +245,43 @@ In fact, Pandoc Markdown uses the {{< latex >}} `longtable` package, which does 
 `quarto-ieee` uses a hack to temporarily switch to one-column mode. 
 However, this hack may break the page layout.
 To overcome this issue, a basic way is to use code cells (as for @tbl-other).
-Quarto is a multi-language and it uses  `Knitr` to execute `R` code and can execute  Python code blocks within Markdown.
+<!-- Quarto is a multi-language and it uses  `Knitr` to execute `R` code and can execute  Python code blocks within Markdown. -->
 
-::: {#tbl-panel layout-ncol=2}
-| Col1 | Col2 | Col3 |
-|------|------|------|
-| A    | B    | C    |
-| E    | F    | G    |
-| A    | G    | G    |
+```{python}
+#| label: tbl-panel
+#| tbl-cap: "Main Caption"
+#| layout-ncol: 2
+#| tbl-subcap: 
+#|   - "First Table"
+#|   - "Second Table" 
+#| tbl-id:
+#|   - "tbl-first"
+#|   - "tbl-second"
 
-: First Table {#tbl-first}
+import pandas as pd
+from IPython.display import display, Markdown
 
-| Col1 | Col2 | Col3 |
-|------|------|------|
-| A    | B    | C    |
-| E    | F    | G    |
-| A    | G    | G    |
+# First table data
+first_table = pd.DataFrame({
+    'Col1': ['A', 'E', 'A'],
+    'Col2': ['B', 'F', 'G'],
+    'Col3': ['C', 'G', 'G']
+})
 
-: Second Table {#tbl-second}
+# Second table data
+second_table = pd.DataFrame({
+    'Col1': ['A', 'E', 'A'],
+    'Col2': ['B', 'F', 'G'],
+    'Col3': ['C', 'G', 'G']
+})
 
-Main Caption 
-:::
+# Display tables
+display(first_table)
+display(second_table)
+```
 
 The Tables are cross-referenced as @tbl-panel for details, especially @tbl-second.
 There is also @tbl-other.
-
-```{r}
-#| label: tbl-other
-#| tbl-cap: "A table"
-#| tbl.env: tabular
-#| fig-pos: h
-
-options(knitr.table.format = function() {if (knitr::is_latex_output()) 'latex' else 'pandoc'})
-dt <- data.frame(Col1=c('A','B','C'),
-                 Col2=c('D','E','F'),
-                 Col3=c('G','H','I'))
-
-knitr::kable(head(dt), booktabs = TRUE)
-```
 
 ## Bibliography
 
